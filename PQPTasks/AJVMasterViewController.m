@@ -82,6 +82,7 @@ NSInteger count = 0;
     NSManagedObject *record = [[NSManagedObject alloc] initWithEntity:entity insertIntoManagedObjectContext:self.managedObjectContext];
     
     [record setValue:title forKey:@"title"];
+    [record setValue:@"Description of the item" forKey:@"todoDescription"];
     [record setValue:[NSDate date] forKey:@"dateAdded"];
     
     // Save record
@@ -182,7 +183,7 @@ NSInteger count = 0;
 {
     if ([[segue identifier] isEqualToString:@"showDetail"]) {
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        NSDate *object = _objects[indexPath.row];
+        NSManagedObject *object = [self.fetchedResultsController objectAtIndexPath:indexPath];
         [[segue destinationViewController] setDetailItem:object];
     }
 }

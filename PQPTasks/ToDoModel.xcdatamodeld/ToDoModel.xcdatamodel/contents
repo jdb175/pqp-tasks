@@ -4,8 +4,9 @@
         <attribute name="dateAdded" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="isDone" optional="YES" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <attribute name="title" attributeType="String" syncable="YES"/>
+        <attribute name="todoDescription" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="AJVToDoItem" positionX="-63" positionY="-18" width="128" height="90"/>
+        <element name="AJVToDoItem" positionX="-63" positionY="-18" width="128" height="105"/>
     </elements>
 </model>
