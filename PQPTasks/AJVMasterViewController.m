@@ -2,7 +2,9 @@
 //  MasterViewController.m
 //  PQPTasks
 //
-//  Created by Jason Whitehouse on 9/18/14.
+//  Created by
+//    Jason Whitehouse
+//    Victor Andreoni
 //  Copyright (c) 2014 WPI. All rights reserved.
 //
 
@@ -10,12 +12,17 @@
 
 #import "AJVDetailViewController.h"
 
-@interface AJVMasterViewController () {
-    NSMutableArray *_objects;
-}
+#import <CoreData/CoreData.h>
+
+@interface AJVMasterViewController () <NSFetchedResultsControllerDelegate>
+
+    @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
+
 @end
 
 @implementation AJVMasterViewController
+
+NSMutableArray *_objects;
 
 - (void)awakeFromNib
 {
@@ -30,6 +37,28 @@
 
     UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
     self.navigationItem.rightBarButtonItem = addButton;
+    
+    // Fetch stored values
+    
+    // Set up request
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"AJVToDoItem"];
+    
+    // Set up sort descriptor
+    [fetchRequest setSortDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"dateAdded" ascending:YES]]];
+    
+    // Set up controller
+    self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
+    
+    [self.fetchedResultsController setDelegate:self];
+    
+    // Fetch
+    NSError *error = nil;
+    [self.fetchedResultsController performFetch:&error];
+    
+    if (error) {
+        NSLog(@"Unable to perform fetch.");
+        NSLog(@"%@, %@", error, error.localizedDescription);
+    }
 }
 
 - (void)didReceiveMemoryWarning

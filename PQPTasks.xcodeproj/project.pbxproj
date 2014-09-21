@@ -22,6 +22,8 @@
 		9D42A22719CB103B00EC9CE0 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D42A20619CB103B00EC9CE0 /* UIKit.framework */; };
 		9D42A22F19CB103B00EC9CE0 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9D42A22D19CB103B00EC9CE0 /* InfoPlist.strings */; };
 		9D42A23119CB103B00EC9CE0 /* PQPTasksTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D42A23019CB103B00EC9CE0 /* PQPTasksTests.m */; };
+		C95D938E19CE7A27005A259F /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C95D938D19CE7A27005A259F /* CoreData.framework */; };
+		C95D939219CE7F70005A259F /* ToDoModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C95D939019CE7F70005A259F /* ToDoModel.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +58,8 @@
 		9D42A22C19CB103B00EC9CE0 /* PQPTasksTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PQPTasksTests-Info.plist"; sourceTree = "<group>"; };
 		9D42A22E19CB103B00EC9CE0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		9D42A23019CB103B00EC9CE0 /* PQPTasksTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PQPTasksTests.m; sourceTree = "<group>"; };
+		C95D938D19CE7A27005A259F /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		C95D939119CE7F70005A259F /* ToDoModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ToDoModel.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +67,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C95D938E19CE7A27005A259F /* CoreData.framework in Frameworks */,
 				9D42A20519CB103B00EC9CE0 /* CoreGraphics.framework in Frameworks */,
 				9D42A20719CB103B00EC9CE0 /* UIKit.framework in Frameworks */,
 				9D42A20319CB103B00EC9CE0 /* Foundation.framework in Frameworks */,
@@ -104,6 +109,7 @@
 		9D42A20119CB103B00EC9CE0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C95D938D19CE7A27005A259F /* CoreData.framework */,
 				9D42A20219CB103B00EC9CE0 /* Foundation.framework */,
 				9D42A20419CB103B00EC9CE0 /* CoreGraphics.framework */,
 				9D42A20619CB103B00EC9CE0 /* UIKit.framework */,
@@ -115,13 +121,11 @@
 		9D42A20819CB103B00EC9CE0 /* PQPTasks */ = {
 			isa = PBXGroup;
 			children = (
+				C95D938F19CE7ECD005A259F /* Models */,
+				C95D939319CE8008005A259F /* ViewControllers */,
 				9D42A21119CB103B00EC9CE0 /* AJVAppDelegate.h */,
 				9D42A21219CB103B00EC9CE0 /* AJVAppDelegate.m */,
 				9D42A21419CB103B00EC9CE0 /* Main.storyboard */,
-				9D42A21719CB103B00EC9CE0 /* AJVMasterViewController.h */,
-				9D42A21819CB103B00EC9CE0 /* AJVMasterViewController.m */,
-				9D42A21A19CB103B00EC9CE0 /* AJVDetailViewController.h */,
-				9D42A21B19CB103B00EC9CE0 /* AJVDetailViewController.m */,
 				9D42A21D19CB103B00EC9CE0 /* Images.xcassets */,
 				9D42A20919CB103B00EC9CE0 /* Supporting Files */,
 			);
@@ -155,6 +159,25 @@
 				9D42A22D19CB103B00EC9CE0 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		C95D938F19CE7ECD005A259F /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				C95D939019CE7F70005A259F /* ToDoModel.xcdatamodeld */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		C95D939319CE8008005A259F /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				9D42A21719CB103B00EC9CE0 /* AJVMasterViewController.h */,
+				9D42A21819CB103B00EC9CE0 /* AJVMasterViewController.m */,
+				9D42A21A19CB103B00EC9CE0 /* AJVDetailViewController.h */,
+				9D42A21B19CB103B00EC9CE0 /* AJVDetailViewController.m */,
+			);
+			name = ViewControllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -259,6 +282,7 @@
 				9D42A21919CB103B00EC9CE0 /* AJVMasterViewController.m in Sources */,
 				9D42A20F19CB103B00EC9CE0 /* main.m in Sources */,
 				9D42A21C19CB103B00EC9CE0 /* AJVDetailViewController.m in Sources */,
+				C95D939219CE7F70005A259F /* ToDoModel.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -475,6 +499,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		C95D939019CE7F70005A259F /* ToDoModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				C95D939119CE7F70005A259F /* ToDoModel.xcdatamodel */,
+			);
+			currentVersion = C95D939119CE7F70005A259F /* ToDoModel.xcdatamodel */;
+			path = ToDoModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 9D42A1F719CB103B00EC9CE0 /* Project object */;
 }
