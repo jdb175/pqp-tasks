@@ -10,7 +10,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AJVMasterViewController : UITableViewController
+@interface AJVMasterViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 

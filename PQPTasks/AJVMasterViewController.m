@@ -23,6 +23,7 @@
 @implementation AJVMasterViewController
 
 NSMutableArray *_objects;
+NSInteger count = 0;
 
 - (void)awakeFromNib
 {
@@ -69,24 +70,69 @@ NSMutableArray *_objects;
 
 - (void)insertNewObject:(id)sender
 {
-    if (!_objects) {
-        _objects = [[NSMutableArray alloc] init];
+    // These hard-coded values are temporary to showcase persistent data. A new view controller will be needed
+    // to create new to-dos
+    NSString *title = [NSString stringWithFormat:@"Title %ld",(long)count];
+    count++;
+    
+    // Set up entity
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"AJVToDoItem" inManagedObjectContext:self.managedObjectContext];
+    
+    // Set up record
+    NSManagedObject *record = [[NSManagedObject alloc] initWithEntity:entity insertIntoManagedObjectContext:self.managedObjectContext];
+    
+    [record setValue:title forKey:@"title"];
+    [record setValue:[NSDate date] forKey:@"dateAdded"];
+    
+    // Save record
+    NSError *error = nil;
+    
+    if ([self.managedObjectContext save:&error]) {
+        [[[UIAlertView alloc] initWithTitle:@"Success!" message:@"A to-do item was created" delegate:nil cancelButtonTitle:@"Awesome!" otherButtonTitles:nil] show];
+    } else {
+        if (error) {
+            NSLog(@"Unable to save to-do item.");
+            NSLog(@"%@, %@", error, error.localizedDescription);
+        }
+        
+        // Show Alert View
+        [[[UIAlertView alloc] initWithTitle:@"Warning" message:@"Your to-do could not be saved" delegate:nil cancelButtonTitle:@"Ahh :(" otherButtonTitles:nil] show];
     }
-    [_objects insertObject:[NSDate date] atIndex:0];
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
-    [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
 }
+
+#pragma mark -
+#pragma mark Fetched results controller methods
+- (void)controllerWillChangeContent:(NSFetchedResultsController *)controller {
+    [self.tableView beginUpdates];
+}
+
+- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
+    [self.tableView endUpdates];
+}
+
+- (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath {
+    switch (type) {
+        case NSFetchedResultsChangeInsert: {
+            [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
+            break;
+        }
+    }
+}
+
 
 #pragma mark - Table View
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
+    return [[self.fetchedResultsController sections] count];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return _objects.count;
+    NSArray *sections = [self.fetchedResultsController sections];
+    id<NSFetchedResultsSectionInfo> sectionInfo = [sections objectAtIndex:section];
+    
+    return [sectionInfo numberOfObjects];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
