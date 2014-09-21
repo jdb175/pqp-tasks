@@ -12,10 +12,10 @@
 		9D42A20719CB103B00EC9CE0 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D42A20619CB103B00EC9CE0 /* UIKit.framework */; };
 		9D42A20D19CB103B00EC9CE0 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9D42A20B19CB103B00EC9CE0 /* InfoPlist.strings */; };
 		9D42A20F19CB103B00EC9CE0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D42A20E19CB103B00EC9CE0 /* main.m */; };
-		9D42A21319CB103B00EC9CE0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D42A21219CB103B00EC9CE0 /* AppDelegate.m */; };
+		9D42A21319CB103B00EC9CE0 /* AJVAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D42A21219CB103B00EC9CE0 /* AJVAppDelegate.m */; };
 		9D42A21619CB103B00EC9CE0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9D42A21419CB103B00EC9CE0 /* Main.storyboard */; };
-		9D42A21919CB103B00EC9CE0 /* MasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D42A21819CB103B00EC9CE0 /* MasterViewController.m */; };
-		9D42A21C19CB103B00EC9CE0 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D42A21B19CB103B00EC9CE0 /* DetailViewController.m */; };
+		9D42A21919CB103B00EC9CE0 /* AJVMasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D42A21819CB103B00EC9CE0 /* AJVMasterViewController.m */; };
+		9D42A21C19CB103B00EC9CE0 /* AJVDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D42A21B19CB103B00EC9CE0 /* AJVDetailViewController.m */; };
 		9D42A21E19CB103B00EC9CE0 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9D42A21D19CB103B00EC9CE0 /* Images.xcassets */; };
 		9D42A22519CB103B00EC9CE0 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D42A22419CB103B00EC9CE0 /* XCTest.framework */; };
 		9D42A22619CB103B00EC9CE0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D42A20219CB103B00EC9CE0 /* Foundation.framework */; };
@@ -43,13 +43,13 @@
 		9D42A20C19CB103B00EC9CE0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		9D42A20E19CB103B00EC9CE0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		9D42A21019CB103B00EC9CE0 /* PQPTasks-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PQPTasks-Prefix.pch"; sourceTree = "<group>"; };
-		9D42A21119CB103B00EC9CE0 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		9D42A21219CB103B00EC9CE0 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		9D42A21119CB103B00EC9CE0 /* AJVAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AJVAppDelegate.h; sourceTree = "<group>"; };
+		9D42A21219CB103B00EC9CE0 /* AJVAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AJVAppDelegate.m; sourceTree = "<group>"; };
 		9D42A21519CB103B00EC9CE0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		9D42A21719CB103B00EC9CE0 /* MasterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MasterViewController.h; sourceTree = "<group>"; };
-		9D42A21819CB103B00EC9CE0 /* MasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterViewController.m; sourceTree = "<group>"; };
-		9D42A21A19CB103B00EC9CE0 /* DetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
-		9D42A21B19CB103B00EC9CE0 /* DetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
+		9D42A21719CB103B00EC9CE0 /* AJVMasterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AJVMasterViewController.h; sourceTree = "<group>"; };
+		9D42A21819CB103B00EC9CE0 /* AJVMasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AJVMasterViewController.m; sourceTree = "<group>"; };
+		9D42A21A19CB103B00EC9CE0 /* AJVDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AJVDetailViewController.h; sourceTree = "<group>"; };
+		9D42A21B19CB103B00EC9CE0 /* AJVDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AJVDetailViewController.m; sourceTree = "<group>"; };
 		9D42A21D19CB103B00EC9CE0 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		9D42A22319CB103B00EC9CE0 /* PQPTasksTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PQPTasksTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9D42A22419CB103B00EC9CE0 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -115,13 +115,13 @@
 		9D42A20819CB103B00EC9CE0 /* PQPTasks */ = {
 			isa = PBXGroup;
 			children = (
-				9D42A21119CB103B00EC9CE0 /* AppDelegate.h */,
-				9D42A21219CB103B00EC9CE0 /* AppDelegate.m */,
+				9D42A21119CB103B00EC9CE0 /* AJVAppDelegate.h */,
+				9D42A21219CB103B00EC9CE0 /* AJVAppDelegate.m */,
 				9D42A21419CB103B00EC9CE0 /* Main.storyboard */,
-				9D42A21719CB103B00EC9CE0 /* MasterViewController.h */,
-				9D42A21819CB103B00EC9CE0 /* MasterViewController.m */,
-				9D42A21A19CB103B00EC9CE0 /* DetailViewController.h */,
-				9D42A21B19CB103B00EC9CE0 /* DetailViewController.m */,
+				9D42A21719CB103B00EC9CE0 /* AJVMasterViewController.h */,
+				9D42A21819CB103B00EC9CE0 /* AJVMasterViewController.m */,
+				9D42A21A19CB103B00EC9CE0 /* AJVDetailViewController.h */,
+				9D42A21B19CB103B00EC9CE0 /* AJVDetailViewController.m */,
 				9D42A21D19CB103B00EC9CE0 /* Images.xcassets */,
 				9D42A20919CB103B00EC9CE0 /* Supporting Files */,
 			);
@@ -201,6 +201,7 @@
 		9D42A1F719CB103B00EC9CE0 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				CLASSPREFIX = AJV;
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = WPI;
 				TargetAttributes = {
@@ -254,10 +255,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9D42A21319CB103B00EC9CE0 /* AppDelegate.m in Sources */,
-				9D42A21919CB103B00EC9CE0 /* MasterViewController.m in Sources */,
+				9D42A21319CB103B00EC9CE0 /* AJVAppDelegate.m in Sources */,
+				9D42A21919CB103B00EC9CE0 /* AJVMasterViewController.m in Sources */,
 				9D42A20F19CB103B00EC9CE0 /* main.m in Sources */,
-				9D42A21C19CB103B00EC9CE0 /* DetailViewController.m in Sources */,
+				9D42A21C19CB103B00EC9CE0 /* AJVDetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -462,6 +463,7 @@
 				9D42A23619CB103B00EC9CE0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		9D42A23719CB103B00EC9CE0 /* Build configuration list for PBXNativeTarget "PQPTasksTests" */ = {
 			isa = XCConfigurationList;
@@ -470,6 +472,7 @@
 				9D42A23919CB103B00EC9CE0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

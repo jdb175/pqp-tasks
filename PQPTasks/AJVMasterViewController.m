@@ -6,16 +6,16 @@
 //  Copyright (c) 2014 WPI. All rights reserved.
 //
 
-#import "MasterViewController.h"
+#import "AJVMasterViewController.h"
 
-#import "DetailViewController.h"
+#import "AJVDetailViewController.h"
 
-@interface MasterViewController () {
+@interface AJVMasterViewController () {
     NSMutableArray *_objects;
 }
 @end
 
-@implementation MasterViewController
+@implementation AJVMasterViewController
 
 - (void)awakeFromNib
 {

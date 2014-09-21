@@ -6,9 +6,9 @@
 //  Copyright (c) 2014 WPI. All rights reserved.
 //
 
-#import "AppDelegate.h"
+#import "AJVAppDelegate.h"
 
-@implementation AppDelegate
+@implementation AJVAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {

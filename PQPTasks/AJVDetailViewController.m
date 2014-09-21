@@ -6,13 +6,13 @@
 //  Copyright (c) 2014 WPI. All rights reserved.
 //
 
-#import "DetailViewController.h"
+#import "AJVDetailViewController.h"
 
-@interface DetailViewController ()
+@interface AJVDetailViewController ()
 - (void)configureView;
 @end
 
-@implementation DetailViewController
+@implementation AJVDetailViewController
 
 #pragma mark - Managing the detail item
 
