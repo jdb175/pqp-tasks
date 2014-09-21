@@ -1,5 +1,5 @@
 //
-//  MasterViewController.h
+//  AppDelegate.h
 //  PQPTasks
 //
 //  Created by Jason Whitehouse on 9/18/14.
@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MasterViewController : UITableViewController
+@interface AJVAppDelegate : UIResponder <UIApplicationDelegate>
+
+@property (strong, nonatomic) UIWindow *window;
 
 @end
