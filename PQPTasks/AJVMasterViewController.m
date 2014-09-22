@@ -34,10 +34,6 @@ NSInteger count = 0;
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
-    self.navigationItem.leftBarButtonItem = self.editButtonItem;
-
-    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
-    self.navigationItem.rightBarButtonItem = addButton;
     
     // Fetch stored values
     
@@ -68,38 +64,6 @@ NSInteger count = 0;
     // Dispose of any resources that can be recreated.
 }
 
-- (void)insertNewObject:(id)sender
-{
-    // These hard-coded values are temporary to showcase persistent data. A new view controller will be needed
-    // to create new to-dos
-    NSString *title = [NSString stringWithFormat:@"Title %ld",(long)count];
-    count++;
-    
-    // Set up entity
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"AJVToDoItem" inManagedObjectContext:self.managedObjectContext];
-    
-    // Set up record
-    NSManagedObject *record = [[NSManagedObject alloc] initWithEntity:entity insertIntoManagedObjectContext:self.managedObjectContext];
-    
-    [record setValue:title forKey:@"title"];
-    [record setValue:@"Description of the item" forKey:@"todoDescription"];
-    [record setValue:[NSDate date] forKey:@"dateAdded"];
-    
-    // Save record
-    NSError *error = nil;
-    
-    if ([self.managedObjectContext save:&error]) {
-        [[[UIAlertView alloc] initWithTitle:@"Success!" message:@"A to-do item was created" delegate:nil cancelButtonTitle:@"Awesome!" otherButtonTitles:nil] show];
-    } else {
-        if (error) {
-            NSLog(@"Unable to save to-do item.");
-            NSLog(@"%@, %@", error, error.localizedDescription);
-        }
-        
-        // Show Alert View
-        [[[UIAlertView alloc] initWithTitle:@"Warning" message:@"Your to-do could not be saved" delegate:nil cancelButtonTitle:@"Ahh :(" otherButtonTitles:nil] show];
-    }
-}
 
 #pragma mark -
 #pragma mark Fetched results controller methods
@@ -181,10 +145,17 @@ NSInteger count = 0;
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
+
+    AJVDetailViewController *detailViewController = (AJVDetailViewController *)[segue destinationViewController];
+    detailViewController.managedObjectContext = self.managedObjectContext;
+    
     if ([[segue identifier] isEqualToString:@"showDetail"]) {
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         NSManagedObject *object = [self.fetchedResultsController objectAtIndexPath:indexPath];
         [[segue destinationViewController] setDetailItem:object];
+        self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:self.navigationItem.title style:UIBarButtonItemStyleBordered target:nil action:nil];
+    } else if ([[segue identifier] isEqualToString:@"New"]) {
+        self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStyleBordered target:nil action:nil];
     }
 }
 

@@ -11,6 +11,6 @@
 @interface AJVDetailViewController : UIViewController
 
 @property (strong, nonatomic) id detailItem;
+@property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 
-@property (weak, nonatomic) IBOutlet UILabel *detailDescriptionLabel;
 @end
