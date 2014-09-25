@@ -2,7 +2,9 @@
 //  DetailViewController.m
 //  PQPTasks
 //
-//  Created by Jason Whitehouse on 9/18/14.
+//  Created by
+//    Jason Whitehouse
+//    Victor Andreoni
 //  Copyright (c) 2014 WPI. All rights reserved.
 //
 
@@ -11,81 +13,122 @@
 
 
 @interface AJVDetailViewController ()
-@property (weak, nonatomic) IBOutlet UITextField *titleField;
-@property (weak, nonatomic) IBOutlet UITextField *descriptionField;
-@property (weak, nonatomic) IBOutlet UISwitch *completeField;
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *saveButton;
-- (void)configureView;
+
+    @property (weak, nonatomic) IBOutlet UITextField *titleField;
+    @property (weak, nonatomic) IBOutlet UITextField *descriptionField;
+    @property (weak, nonatomic) IBOutlet UISwitch *completeField;
+    @property (weak, nonatomic) IBOutlet UIBarButtonItem *saveButton;
+    - (void)configureView;
+
 @end
 
 @implementation AJVDetailViewController
 
 #pragma mark - Managing the detail item
 
-- (void)setDetailItem:(NSManagedObject*)newDetailItem
+- (void)viewDidLoad
 {
-    if (_detailItem != newDetailItem) {
-        _detailItem = newDetailItem;
-        
-        // Update the view.
-        [self configureView];
-    }
+    [super viewDidLoad];
+    
+    [self configureView];
 }
 
 - (void)configureView
 {
     // Update the user interface for the detail item.
-    if (self.detailItem) {
-        self.navigationItem.title = [self.detailItem valueForKey:@"title"];
-        // self.detailDescriptionLabel.text = [self.detailItem valueForKey:@"todoDescription"];
+    if (self.toDoItem) {
+        // Set title
+        self.navigationItem.title = [self.toDoItem valueForKey:@"title"];
         
-        self.titleField.text = [self.detailItem valueForKey:@"title"]  ;
-        self.descriptionField.text = [self.detailItem valueForKey:@"todoDescription"];
-        
+        // Get values from object
+        self.titleField.text = [self.toDoItem valueForKey:@"title"]  ;
+        self.descriptionField.text = [self.toDoItem valueForKey:@"todoDescription"];
         self.completeField.enabled = YES;
-        self.completeField.On = (BOOL)[self.detailItem valueForKey:@"isDone"];
-        self.saveButton.enabled = NO;
+        self.completeField.On = [[self.toDoItem valueForKey:@"isDone"] boolValue];
+    } else {
+        // Set title
+        self.navigationItem.title = [self.toDoItem valueForKey:@"Create New ToDo"];
     }
 }
 
-- (IBAction)insertNewObject:(UIBarButtonItem *)sender
+/** Validate input fields from the interface
+ 
+ Checks that required fields are properly populated
+ 
+ @brief Validate input fields
+ @result Whether the fields are valid or not
+ */
+- (bool)validateFields
 {
-    // These hard-coded values are temporary to showcase persistent data. A new view controller will be needed
-    // to create new to-dos
-    
-    // Set up entity
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"AJVToDoItem" inManagedObjectContext:self.managedObjectContext];
-    
-    // Set up record
-    NSManagedObject *record = [[NSManagedObject alloc] initWithEntity:entity insertIntoManagedObjectContext:self.managedObjectContext];
-    
-    [record setValue:self.titleField.text forKey:@"title"];
-    [record setValue:self.descriptionField.text forKey:@"todoDescription"];
-    [record setValue:[NSDate date] forKey:@"dateAdded"];
-    [record setValue:NO forKey:@"isDone"];
-    
-    // Save record
+    if (!self.titleField.text || !self.titleField.text.length) {
+        [[[UIAlertView alloc] initWithTitle:@"Error" message:@"The name field cannot be empty" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
+        return false;
+    }
+    return true;
+}
+
+/** Saves a record into persistent storage
+ 
+ @brief Save record into storage
+ @result The record is saved
+ 
+ @param record The record to save
+ */
+- (void)saveRecord:(NSManagedObject *)record
+{
     NSError *error = nil;
     
-    if ([self.managedObjectContext save:&error]) {
-        [[[UIAlertView alloc] initWithTitle:@"Success!" message:@"A to-do item was created" delegate:nil cancelButtonTitle:@"Awesome!" otherButtonTitles:nil] show];
-    } else {
+    if (![self.managedObjectContext save:&error]) {
+
         if (error) {
             NSLog(@"Unable to save to-do item.");
             NSLog(@"%@, %@", error, error.localizedDescription);
         }
         
         // Show Alert View
-        [[[UIAlertView alloc] initWithTitle:@"Warning" message:@"Your to-do could not be saved" delegate:nil cancelButtonTitle:@"Ahh :(" otherButtonTitles:nil] show];
+        [[[UIAlertView alloc] initWithTitle:@"Warning" message:@"Your to-do could not be saved" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
     }
-
 }
 
-- (void)viewDidLoad
+/** Main method called for saving/updating a ToDoItem
+ 
+ @brief Save ToDo Item
+ @result The ToDo Item is saved
+ 
+ @param sender The button calling this action
+ */
+- (IBAction)insertNewObject:(UIBarButtonItem *)sender
 {
-    [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
-    [self configureView];
+    // Validate interface fields
+    if ([self validateFields]) {
+        // Updating record
+        if (self.toDoItem) {
+            // Update record values
+            [self.toDoItem setValue:self.titleField.text forKey:@"title"];
+            [self.toDoItem setValue:self.descriptionField.text forKey:@"todoDescription"];
+            [self.toDoItem setValue:[NSNumber numberWithBool:self.completeField.isOn] forKey:@"isDone"];
+            
+            // Update the record
+            [self saveRecord:self.toDoItem];
+            
+        } else {
+            // Set up entity and record
+            NSEntityDescription *entity = [NSEntityDescription entityForName:@"AJVToDoItem" inManagedObjectContext:self.managedObjectContext];
+            NSManagedObject *record = [[NSManagedObject alloc] initWithEntity:entity insertIntoManagedObjectContext:self.managedObjectContext];
+            
+            // Set record values
+            [record setValue:self.titleField.text forKey:@"title"];
+            [record setValue:self.descriptionField.text forKey:@"todoDescription"];
+            [record setValue:[NSDate date] forKey:@"dateAdded"];
+            [record setValue:NO forKey:@"isDone"];
+            
+            // Save record
+            [self saveRecord:record];
+        }
+    }
+    
+    // Pop the view controller
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)didReceiveMemoryWarning

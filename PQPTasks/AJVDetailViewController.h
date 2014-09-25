@@ -10,7 +10,7 @@
 
 @interface AJVDetailViewController : UIViewController
 
-@property (strong, nonatomic) id detailItem;
+@property (strong, nonatomic) id toDoItem;
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 
 @end

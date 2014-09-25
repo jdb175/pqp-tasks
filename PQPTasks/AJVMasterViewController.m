@@ -127,35 +127,30 @@ NSInteger count = 0;
     }
 }
 
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-
-    AJVDetailViewController *detailViewController = (AJVDetailViewController *)[segue destinationViewController];
-    detailViewController.managedObjectContext = self.managedObjectContext;
-    
     if ([[segue identifier] isEqualToString:@"showDetail"]) {
+        // Set up the detail view controller
+        AJVDetailViewController *detailViewController = (AJVDetailViewController *)[segue destinationViewController];
+        detailViewController.managedObjectContext = self.managedObjectContext;
+        
+        // Determine which item is being selected
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        NSManagedObject *object = [self.fetchedResultsController objectAtIndexPath:indexPath];
-        [[segue destinationViewController] setDetailItem:object];
+        NSManagedObject *toDoItem = [self.fetchedResultsController objectAtIndexPath:indexPath];
+        
+        // Pass the ToDo item to the detail view
+        detailViewController.toDoItem = toDoItem;
+        
+        // Set the back button for editing mode
         self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:self.navigationItem.title style:UIBarButtonItemStyleBordered target:nil action:nil];
     } else if ([[segue identifier] isEqualToString:@"New"]) {
+        // Set up the detail view controller
+        AJVDetailViewController *detailViewController = (AJVDetailViewController *)[segue destinationViewController];
+        detailViewController.managedObjectContext = self.managedObjectContext;
+        
+        // Set back button for new ToDo items
         self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStyleBordered target:nil action:nil];
+        
     }
 }
 
