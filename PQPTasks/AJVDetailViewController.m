@@ -67,29 +67,6 @@
     return true;
 }
 
-/** Saves a record into persistent storage
- 
- @brief Save record into storage
- @result The record is saved
- 
- @param record The record to save
- */
-- (void)saveRecord:(NSManagedObject *)record
-{
-    NSError *error = nil;
-    
-    if (![self.managedObjectContext save:&error]) {
-
-        if (error) {
-            NSLog(@"Unable to save to-do item.");
-            NSLog(@"%@, %@", error, error.localizedDescription);
-        }
-        
-        // Show Alert View
-        [[[UIAlertView alloc] initWithTitle:@"Warning" message:@"Your to-do could not be saved" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
-    }
-}
-
 /** Main method called for saving/updating a ToDoItem
  
  @brief Save ToDo Item
@@ -107,10 +84,6 @@
             [self.toDoItem setValue:self.titleField.text forKey:@"title"];
             [self.toDoItem setValue:self.descriptionField.text forKey:@"todoDescription"];
             [self.toDoItem setValue:[NSNumber numberWithBool:self.completeField.isOn] forKey:@"isDone"];
-            
-            // Update the record
-            [self saveRecord:self.toDoItem];
-            
         } else {
             // Set up entity and record
             NSEntityDescription *entity = [NSEntityDescription entityForName:@"AJVToDoItem" inManagedObjectContext:self.managedObjectContext];
@@ -121,9 +94,6 @@
             [record setValue:self.descriptionField.text forKey:@"todoDescription"];
             [record setValue:[NSDate date] forKey:@"dateAdded"];
             [record setValue:NO forKey:@"isDone"];
-            
-            // Save record
-            [self saveRecord:record];
         }
     }
     

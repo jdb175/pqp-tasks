@@ -53,8 +53,7 @@
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
-    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
-    // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+        [self saveManagedObjectContext];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
@@ -69,7 +68,30 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application
 {
-    // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    [self saveManagedObjectContext];
+}
+
+/** Saves a record into persistent storage
+ 
+ @brief Save record into storage
+ @result The record is saved
+ 
+ @param record The record to save
+ */
+- (void)saveManagedObjectContext
+{
+    NSError *error = nil;
+    
+    if (![self.managedObjectContext save:&error]) {
+        
+        if (error) {
+            NSLog(@"Unable to save to-do item.");
+            NSLog(@"%@, %@", error, error.localizedDescription);
+        }
+        
+        // Show Alert View
+        [[[UIAlertView alloc] initWithTitle:@"Warning" message:@"Your to-do could not be saved" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
+    }
 }
 
 
