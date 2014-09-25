@@ -22,9 +22,6 @@
 
 @implementation AJVMasterViewController
 
-NSMutableArray *_objects;
-NSInteger count = 0;
-
 - (void)awakeFromNib
 {
     [super awakeFromNib];
@@ -81,6 +78,18 @@ NSInteger count = 0;
             [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
             break;
         }
+        case NSFetchedResultsChangeDelete: {
+            [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+            break;
+        }
+        case NSFetchedResultsChangeUpdate: {
+            // Get the record
+            NSManagedObject *record = [self.fetchedResultsController objectAtIndexPath:indexPath];
+            
+            // Update the cell
+            [self.tableView cellForRowAtIndexPath:indexPath].textLabel.text = [record valueForKey:@"title"];
+            break;
+        }
     }
 }
 
@@ -113,18 +122,7 @@ NSInteger count = 0;
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Return NO if you do not want the specified item to be editable.
     return YES;
-}
-
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        [_objects removeObjectAtIndex:indexPath.row];
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
-    }
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender

@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AJVDetailViewController : UIViewController
+@interface AJVDetailViewController : UIViewController <UITextFieldDelegate>
 
 @property (strong, nonatomic) id toDoItem;
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
