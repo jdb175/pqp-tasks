@@ -7,6 +7,7 @@
 //
 
 #import <XCTest/XCTest.h>
+#import "AJVArithTestModel.h"
 
 @interface PQPTasksTests : XCTestCase
 
@@ -26,9 +27,28 @@
     [super tearDown];
 }
 
-- (void)testExample
+- (void)testAdd
 {
-    XCTFail(@"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+    AJVArithTestModel *one = [[AJVArithTestModel alloc] init];
+    one.num = 1;
+    XCTAssertEqual([one add:2], 3);
+    
+}
+
+- (void)testMult
+{
+    AJVArithTestModel *two = [[AJVArithTestModel alloc] init];
+    two.num = 2;
+    XCTAssertEqual([two mult:3], 6);
+}
+
+
+- (void)testAddMultZero
+{
+    AJVArithTestModel *two = [[AJVArithTestModel alloc] init];
+    two.num = 2;
+    int result = [two add:[two mult:-1]];
+    XCTAssertEqual(result, 0);
 }
 
 @end

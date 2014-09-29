@@ -18,6 +18,7 @@
     @property (weak, nonatomic) IBOutlet UITextField *descriptionField;
     @property (weak, nonatomic) IBOutlet UISwitch *completeField;
     @property (weak, nonatomic) IBOutlet UIBarButtonItem *saveButton;
+    @property (weak, nonatomic) IBOutlet UISegmentedControl *priorityField;
     - (void)configureView;
 
 @end
@@ -45,9 +46,11 @@
         self.descriptionField.text = [self.toDoItem valueForKey:@"todoDescription"];
         self.completeField.enabled = YES;
         self.completeField.On = [[self.toDoItem valueForKey:@"isDone"] boolValue];
+        self.priorityField.selectedSegmentIndex = [[self.toDoItem valueForKey:@"priority"] integerValue];
     } else {
         // Set title
-        self.navigationItem.title = [self.toDoItem valueForKey:@"Create New ToDo"];
+        self.navigationItem.title = @"Create new ToDo";
+        self.priorityField.selectedSegmentIndex = 0;
     }
 }
 
@@ -84,6 +87,7 @@
             [self.toDoItem setValue:self.titleField.text forKey:@"title"];
             [self.toDoItem setValue:self.descriptionField.text forKey:@"todoDescription"];
             [self.toDoItem setValue:[NSNumber numberWithBool:self.completeField.isOn] forKey:@"isDone"];
+            [self.toDoItem setValue:[NSNumber numberWithInt:self.priorityField.selectedSegmentIndex] forKey:@"priority"];
         } else {
             // Set up entity and record
             NSEntityDescription *entity = [NSEntityDescription entityForName:@"AJVToDoItem" inManagedObjectContext:self.managedObjectContext];
@@ -94,6 +98,7 @@
             [record setValue:self.descriptionField.text forKey:@"todoDescription"];
             [record setValue:[NSDate date] forKey:@"dateAdded"];
             [record setValue:NO forKey:@"isDone"];
+            [record setValue:[NSNumber numberWithInt:self.priorityField.selectedSegmentIndex] forKey:@"priority"];
         }
     }
     

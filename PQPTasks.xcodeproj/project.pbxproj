@@ -22,6 +22,7 @@
 		9D42A22719CB103B00EC9CE0 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D42A20619CB103B00EC9CE0 /* UIKit.framework */; };
 		9D42A22F19CB103B00EC9CE0 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9D42A22D19CB103B00EC9CE0 /* InfoPlist.strings */; };
 		9D42A23119CB103B00EC9CE0 /* PQPTasksTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D42A23019CB103B00EC9CE0 /* PQPTasksTests.m */; };
+		9FA7BD2219D914220073DFB1 /* AJVArithTestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FA7BD2119D914220073DFB1 /* AJVArithTestModel.m */; };
 		C95D938E19CE7A27005A259F /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C95D938D19CE7A27005A259F /* CoreData.framework */; };
 		C95D939219CE7F70005A259F /* ToDoModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C95D939019CE7F70005A259F /* ToDoModel.xcdatamodeld */; };
 /* End PBXBuildFile section */
@@ -58,6 +59,8 @@
 		9D42A22C19CB103B00EC9CE0 /* PQPTasksTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PQPTasksTests-Info.plist"; sourceTree = "<group>"; };
 		9D42A22E19CB103B00EC9CE0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		9D42A23019CB103B00EC9CE0 /* PQPTasksTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PQPTasksTests.m; sourceTree = "<group>"; };
+		9FA7BD2019D914220073DFB1 /* AJVArithTestModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AJVArithTestModel.h; sourceTree = "<group>"; };
+		9FA7BD2119D914220073DFB1 /* AJVArithTestModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AJVArithTestModel.m; sourceTree = "<group>"; };
 		C95D938D19CE7A27005A259F /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		C95D939119CE7F70005A259F /* ToDoModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ToDoModel.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -165,6 +168,8 @@
 			isa = PBXGroup;
 			children = (
 				C95D939019CE7F70005A259F /* ToDoModel.xcdatamodeld */,
+				9FA7BD2019D914220073DFB1 /* AJVArithTestModel.h */,
+				9FA7BD2119D914220073DFB1 /* AJVArithTestModel.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -282,6 +287,7 @@
 				9D42A21919CB103B00EC9CE0 /* AJVMasterViewController.m in Sources */,
 				9D42A20F19CB103B00EC9CE0 /* main.m in Sources */,
 				9D42A21C19CB103B00EC9CE0 /* AJVDetailViewController.m in Sources */,
+				9FA7BD2219D914220073DFB1 /* AJVArithTestModel.m in Sources */,
 				C95D939219CE7F70005A259F /* ToDoModel.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
