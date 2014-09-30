@@ -90,6 +90,9 @@
             [self.tableView cellForRowAtIndexPath:indexPath].textLabel.text = [record valueForKey:@"title"];
             break;
         }
+        case NSFetchedResultsChangeMove: {
+            break;
+        }
     }
 }
 

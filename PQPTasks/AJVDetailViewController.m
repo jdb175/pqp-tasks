@@ -97,7 +97,7 @@
             [record setValue:self.titleField.text forKey:@"title"];
             [record setValue:self.descriptionField.text forKey:@"todoDescription"];
             [record setValue:[NSDate date] forKey:@"dateAdded"];
-            [record setValue:NO forKey:@"isDone"];
+            [record setValue:false forKey:@"isDone"];
             [record setValue:[NSNumber numberWithInteger:self.priorityField.selectedSegmentIndex] forKey:@"priority"];
         }
         
