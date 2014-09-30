@@ -10,12 +10,12 @@
 
 @implementation AJVArithTestModel
 
-- (int)add:(NSInteger)addNum
+- (NSInteger)add:(NSInteger)addNum
 {
     return self.num + addNum;
 }
 
-- (int)mult:(NSInteger)multNum
+- (NSInteger)mult:(NSInteger)multNum
 {
     return self.num * multNum;
 }

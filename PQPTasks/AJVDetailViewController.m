@@ -87,7 +87,7 @@
             [self.toDoItem setValue:self.titleField.text forKey:@"title"];
             [self.toDoItem setValue:self.descriptionField.text forKey:@"todoDescription"];
             [self.toDoItem setValue:[NSNumber numberWithBool:self.completeField.isOn] forKey:@"isDone"];
-            [self.toDoItem setValue:[NSNumber numberWithInt:self.priorityField.selectedSegmentIndex] forKey:@"priority"];
+            [self.toDoItem setValue:[NSNumber numberWithInteger:self.priorityField.selectedSegmentIndex] forKey:@"priority"];
         } else {
             // Set up entity and record
             NSEntityDescription *entity = [NSEntityDescription entityForName:@"AJVToDoItem" inManagedObjectContext:self.managedObjectContext];
@@ -98,12 +98,13 @@
             [record setValue:self.descriptionField.text forKey:@"todoDescription"];
             [record setValue:[NSDate date] forKey:@"dateAdded"];
             [record setValue:NO forKey:@"isDone"];
-            [record setValue:[NSNumber numberWithInt:self.priorityField.selectedSegmentIndex] forKey:@"priority"];
+            [record setValue:[NSNumber numberWithInteger:self.priorityField.selectedSegmentIndex] forKey:@"priority"];
         }
+        
+        // Pop the view controller
+        [self.navigationController popViewControllerAnimated:YES];
     }
     
-    // Pop the view controller
-    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)didReceiveMemoryWarning

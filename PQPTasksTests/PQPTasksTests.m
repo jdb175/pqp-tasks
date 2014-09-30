@@ -47,7 +47,7 @@
 {
     AJVArithTestModel *two = [[AJVArithTestModel alloc] init];
     two.num = 2;
-    int result = [two add:[two mult:-1]];
+    NSInteger result = [two add:[two mult:-1]];
     XCTAssertEqual(result, 0);
 }
 

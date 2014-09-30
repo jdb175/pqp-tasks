@@ -12,7 +12,7 @@
 
 @property (nonatomic) NSInteger num;
 
-- (int)add:(NSInteger)addNum;
-- (int)mult:(NSInteger)multNum;
+- (NSInteger)add:(NSInteger)addNum;
+- (NSInteger)mult:(NSInteger)multNum;
 
 @end
